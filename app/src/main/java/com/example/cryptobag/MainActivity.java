@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     }
     public void sendMessage(View view){
         Intent intent = new Intent(this, DetailActivity.class);
-        String message = "BTC";
+        String message = "ETH";
         intent.putExtra(EXTRA_MESSAGE, message);
         startActivity(intent);
     }
