@@ -144,10 +144,8 @@ public class Coin {
             if(symbol.equals("XLM")){
                 myCoin = coinArrayList.get(9);
             }
-
-
+            
         return myCoin;
-
 
     }
 }

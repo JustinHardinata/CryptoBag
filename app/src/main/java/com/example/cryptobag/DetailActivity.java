@@ -17,7 +17,6 @@ public class DetailActivity extends AppCompatActivity {
     private TextView marketcap;
     private TextView volume24h;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
