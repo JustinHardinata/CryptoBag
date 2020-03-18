@@ -1,6 +1,7 @@
 package com.example.cryptobag;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class Coin {
     private String name;
@@ -144,8 +145,16 @@ public class Coin {
             if(symbol.equals("XLM")){
                 myCoin = coinArrayList.get(9);
             }
-            
+
         return myCoin;
 
+    }
+    public static LinkedList<Coin> CreateCoins (LinkedList<Coin> coins) {
+
+        ArrayList<Coin> myCoins = getCoins();
+
+        coins.addAll(myCoins);
+
+        return coins;
     }
 }
