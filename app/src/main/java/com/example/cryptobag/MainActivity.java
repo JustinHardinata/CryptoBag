@@ -13,13 +13,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.LinkedList;
 
 public class MainActivity extends AppCompatActivity implements CoinListAdapter.OnNoteListener {
-    boolean mIsDualPane;
+
+    private boolean mIsDualPane = false;
     String Symbol = null;
+
     public static final String EXTRA_MESSAGE = "com.example.cryptobag.MESSAGE";
     private RecyclerView mRecyclerView;
     private CoinListAdapter mCoinListAdapter;
     private final LinkedList<Coin> mWordList = new LinkedList<>();
     private static final String TAG = "MainActivity";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

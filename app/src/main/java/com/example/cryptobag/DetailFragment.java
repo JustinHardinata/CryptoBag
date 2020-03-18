@@ -13,7 +13,6 @@ import android.widget.TextView;
 
 import java.util.LinkedList;
 
-
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link DetailFragment#newInstance} factory method to
@@ -29,7 +28,7 @@ public class DetailFragment extends Fragment {
     private TextView marketcap;
     private TextView volume24h;
     private final LinkedList<Coin> Coins = new LinkedList<>();
-    private OnFragmentInteractionListener mListener;
+
 
 
     public DetailFragment() {
@@ -89,18 +88,7 @@ public class DetailFragment extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_detail, container, false);
     }
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-    }
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-    }
-    public interface OnFragmentInteractionListener {
-        void onFragmentInteraction(Uri uri);
-    }
+
 
 
 }
