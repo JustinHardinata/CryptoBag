@@ -29,30 +29,15 @@ public class MainActivity extends AppCompatActivity implements CoinListAdapter.O
         setContentView(R.layout.activity_main);
         LinkedList<Coin> mycoin = Coin.CreateCoins(mWordList);
 
-        Log.d(TAG, "OnCreate: Starting Launch");
-
-        // Get a handle to the RecyclerView.
         mRecyclerView = findViewById(R.id.recyclerview);
-
-        Log.d(TAG, "Get a handle to the RecyclerView done");
 
         mCoinListAdapter = new CoinListAdapter(this, mWordList, this);
 
-        // Connect the adapter with the RecyclerView.
         mRecyclerView.setAdapter(mCoinListAdapter);
 
-        Log.d(TAG, "Connect the adapter with the RecyclerView done");
-
-        // Give the RecyclerView a default layout manager.
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        Log.d(TAG, "Give the RecyclerView a default layout manager done");
-
         View detail_scrollview = findViewById(R.id.fragment_scrollview);
-
-
-        Log.d(TAG, "detail scrollview:" + detail_scrollview);
-
 
         if (detail_scrollview != null && detail_scrollview.getVisibility() == View.VISIBLE) {
             mIsDualPane = true;
