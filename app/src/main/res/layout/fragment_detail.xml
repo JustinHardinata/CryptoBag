@@ -27,6 +27,7 @@
         android:layout_marginEnd="1dp"
         android:layout_marginRight="1dp"
         android:layout_marginBottom="45dp"
+        android:gravity="left"
         android:text="TextView"
         app:layout_constraintBottom_toBottomOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="@+id/bSymbol" />
@@ -36,10 +37,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:layout_marginEnd="186dp"
-        android:layout_marginRight="186dp"
+        android:layout_marginEnd="134dp"
+        android:layout_marginRight="134dp"
+        android:gravity="left"
         android:text="TextView"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/imageView2"
         app:layout_constraintStart_toEndOf="@+id/imageView"
         app:layout_constraintTop_toBottomOf="@+id/bName" />
 
@@ -50,6 +52,7 @@
         android:layout_marginStart="39dp"
         android:layout_marginLeft="39dp"
         android:layout_marginTop="48dp"
+        android:gravity="left"
         android:text="Value(USD)"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
@@ -61,6 +64,7 @@
         android:layout_marginStart="39dp"
         android:layout_marginLeft="39dp"
         android:layout_marginTop="30dp"
+        android:gravity="left"
         android:text="Change (1h)"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
@@ -72,6 +76,7 @@
         android:layout_marginStart="39dp"
         android:layout_marginLeft="39dp"
         android:layout_marginTop="32dp"
+        android:gravity="left"
         android:text="Volume (24h)"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView7" />
@@ -83,6 +88,7 @@
         android:layout_marginStart="39dp"
         android:layout_marginLeft="39dp"
         android:layout_marginTop="29dp"
+        android:gravity="left"
         android:text="Marketcap"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView8" />
@@ -91,9 +97,12 @@
         android:id="@+id/textView8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
+        android:layout_marginStart="39dp"
+        android:layout_marginLeft="39dp"
+        android:layout_marginTop="26dp"
+        android:gravity="left"
         android:text="Change (7d)"
-        app:layout_constraintStart_toStartOf="@+id/textView9"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
     <TextView
@@ -101,6 +110,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
+        android:gravity="left"
         android:text="Change (24h)"
         app:layout_constraintStart_toStartOf="@+id/textView5"
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
@@ -109,16 +119,20 @@
         android:id="@+id/bValue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="28dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="50dp"
+        android:gravity="left"
         android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@+id/bChange1h"
-        app:layout_constraintEnd_toEndOf="@+id/bChange1h" />
+        app:layout_constraintStart_toStartOf="@+id/bSymbol"
+        app:layout_constraintTop_toBottomOf="@+id/bSymbol" />
 
     <TextView
         android:id="@+id/bMarketcap"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
+        android:gravity="left"
         android:text="TextView"
         app:layout_constraintStart_toStartOf="@+id/bChange7d"
         app:layout_constraintTop_toBottomOf="@+id/bChange7d" />
@@ -128,6 +142,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
+        android:gravity="left"
         android:text="TextView"
         app:layout_constraintStart_toStartOf="@+id/bChange1h"
         app:layout_constraintTop_toBottomOf="@+id/bChange1h" />
@@ -136,16 +151,17 @@
         android:id="@+id/bVolume24h"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:gravity="left"
         android:text="TextView"
-        app:layout_constraintStart_toStartOf="@+id/bMarketcap"
-        app:layout_constraintTop_toBottomOf="@+id/bMarketcap" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/textView6"
+        app:layout_constraintStart_toStartOf="@+id/bMarketcap" />
 
     <TextView
         android:id="@+id/bChange7d"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
+        android:gravity="left"
         android:text="TextView"
         app:layout_constraintStart_toStartOf="@+id/bChange24h"
         app:layout_constraintTop_toBottomOf="@+id/bChange24h" />
@@ -154,28 +170,21 @@
         android:id="@+id/bChange1h"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="47dp"
-        android:layout_marginBottom="46dp"
+        android:layout_marginTop="28dp"
+        android:gravity="left"
         android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="@+id/textView9"
-        app:layout_constraintStart_toStartOf="@+id/bSymbol"
-        app:layout_constraintTop_toTopOf="@+id/textView4"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintStart_toStartOf="@+id/bValue"
+        app:layout_constraintTop_toBottomOf="@+id/bValue" />
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="36dp"
+        android:layout_width="0dp"
         android:layout_height="42dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="14dp"
         android:layout_marginEnd="15dp"
         android:layout_marginRight="15dp"
-        android:layout_marginBottom="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/bName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintStart_toEndOf="@+id/bSymbol"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:drawable/ic_search_category_default" />
 

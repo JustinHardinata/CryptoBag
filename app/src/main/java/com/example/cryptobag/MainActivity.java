@@ -42,8 +42,7 @@ public class MainActivity extends AppCompatActivity implements CoinListAdapter.O
         if (detail_scrollview != null && detail_scrollview.getVisibility() == View.VISIBLE) {
             mIsDualPane = true;
         }
-
-
+        
     }
 
     @Override
