@@ -1,24 +1,22 @@
 package com.example.cryptobag;
 
 import android.content.Context;
-import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
-import java.util.LinkedList;
+import com.example.cryptobag.entities.Coin;
+import java.util.List;
 
 public class CoinListAdapter extends RecyclerView.Adapter<CoinListAdapter.CoinViewHolder> {
 
-    private final LinkedList<Coin> mWordList;
+    private final List<Coin> mWordList;
+
     private LayoutInflater mInflater;
     private final String TAG = "CoinListAdapter";
-    public final String EXTRA_MESSAGE = "com.example.cryptobag.MESSAGE";
+    public static final String EXTRA_MESSAGE = "com.example.cryptobag.MESSAGE";
     private OnNoteListener mOnNoteListener;
 
     public class CoinViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -46,7 +44,13 @@ public class CoinListAdapter extends RecyclerView.Adapter<CoinListAdapter.CoinVi
 
         @Override
         public void onClick(View v) {
-            mOnNoteListener.onNoteClick(getAdapterPosition());
+
+            int position = getAdapterPosition();
+            mOnNoteListener.onNoteClick(position);
+
+
+
+
         }
 
     }
@@ -54,7 +58,7 @@ public class CoinListAdapter extends RecyclerView.Adapter<CoinListAdapter.CoinVi
         void onNoteClick(int position);
     }
 
-    public CoinListAdapter(Context context, LinkedList<Coin> wordList,  OnNoteListener onNoteListener) {
+    public CoinListAdapter(Context context, List<Coin> wordList, OnNoteListener onNoteListener) {
         mInflater = LayoutInflater.from(context);
         this.mWordList = wordList;
         this.mOnNoteListener = onNoteListener;
@@ -72,8 +76,8 @@ public class CoinListAdapter extends RecyclerView.Adapter<CoinListAdapter.CoinVi
 
         Coin mCurrent = mWordList.get(position);
         holder.coinName.setText(mCurrent.getName());
-        holder.coinChange1h.setText((double) mCurrent.getChange1h() + "%");
-        holder.coinPrice.setText( "$" + (double) mCurrent.getValue());
+        holder.coinChange1h.setText((mCurrent.getPercentChange1h() + "%"));
+        holder.coinPrice.setText( "$" +  mCurrent.getPriceUsd());
         holder.coinSymbol.setText(mCurrent.getSymbol());
         holder.coinSymbol.setVisibility(View.INVISIBLE);
 

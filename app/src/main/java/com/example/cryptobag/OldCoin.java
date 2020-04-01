@@ -3,7 +3,7 @@ package com.example.cryptobag;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
-public class Coin {
+public class OldCoin {
     private String name;
     private String symbol;
     private double value;
@@ -13,10 +13,10 @@ public class Coin {
     private double marketcap;
     private double volume;
 
-    public Coin() {
+    public OldCoin() {
     }
 
-    public Coin(String name, String symbol, double value, double change1h, double change24h, double change7d, double marketcap, double volume) {
+    public OldCoin(String name, String symbol, double value, double change1h, double change24h, double change7d, double marketcap, double volume) {
         this.name = name;
         this.symbol = symbol;
         this.value = value;
@@ -91,26 +91,26 @@ public class Coin {
         this.volume = volume;
     }
 
-    public static ArrayList<Coin> getCoins() {
-        ArrayList<Coin> coins = new ArrayList<>();
-        coins.add(new Coin("Bitcoin", "BTC", 8662.99, -5.30, 0.06, 6.25, 157394075212.34, 26248451879.217194));
-        coins.add(new Coin("Ethereum", "ETH", 165.69, -5.94, 0.00, 14.58, 18116094926.74, 11453091518.956093));
-        coins.add(new Coin("XRP", "XRP", 0.232488, -6.10, 0.36, 8.03, 9975961452.76, 1857161424.9047709));
-        coins.add(new Coin("Bitcoin Cash", "BCH", 332.50, -5.25, 0.31, 25.16, 6061849292.55, 4034762667.1342015));
-        coins.add(new Coin("Bitcoin SV", "BCHSV", 274.49, 6.09, 0.98, 71.68, 5003375789.67, 2920688747.7987976));
-        coins.add(new Coin("Tether", "USDT", 1.00, 0.09, -0.04, 0.29, 4051244046.05,32969047733.32528));
-        coins.add(new Coin("Litecoin", "LTC", 57.11, -6.42, 0.35, 12.84, 3665038765.74, 3433599488.5887113));
-        coins.add(new Coin("EOS", "EOS", 3.58, -7.21, -0.11, 12.92, 3324669063.56, 3353780327.053705));
-        coins.add(new Coin("Binance Coin", "BNB", 17.20, -5.04, 0.24, 12.51, 2675482775.95, 233309183.3948947));
-        coins.add(new Coin("Stellar", "XLM", 0.061529, -2.09, 1.78, 25.85, 1232939271.42, 502557303.372596));
+    public static ArrayList<OldCoin> getCoins() {
+        ArrayList<OldCoin> coins = new ArrayList<>();
+        coins.add(new OldCoin("Bitcoin", "BTC", 8662.99, -5.30, 0.06, 6.25, 157394075212.34, 26248451879.217194));
+        coins.add(new OldCoin("Ethereum", "ETH", 165.69, -5.94, 0.00, 14.58, 18116094926.74, 11453091518.956093));
+        coins.add(new OldCoin("XRP", "XRP", 0.232488, -6.10, 0.36, 8.03, 9975961452.76, 1857161424.9047709));
+        coins.add(new OldCoin("Bitcoin Cash", "BCH", 332.50, -5.25, 0.31, 25.16, 6061849292.55, 4034762667.1342015));
+        coins.add(new OldCoin("Bitcoin SV", "BCHSV", 274.49, 6.09, 0.98, 71.68, 5003375789.67, 2920688747.7987976));
+        coins.add(new OldCoin("Tether", "USDT", 1.00, 0.09, -0.04, 0.29, 4051244046.05,32969047733.32528));
+        coins.add(new OldCoin("Litecoin", "LTC", 57.11, -6.42, 0.35, 12.84, 3665038765.74, 3433599488.5887113));
+        coins.add(new OldCoin("EOS", "EOS", 3.58, -7.21, -0.11, 12.92, 3324669063.56, 3353780327.053705));
+        coins.add(new OldCoin("Binance Coin", "BNB", 17.20, -5.04, 0.24, 12.51, 2675482775.95, 233309183.3948947));
+        coins.add(new OldCoin("Stellar", "XLM", 0.061529, -2.09, 1.78, 25.85, 1232939271.42, 502557303.372596));
         return coins;
     }
 
-    public static Coin searchCoin (String symbol){
+    public static OldCoin searchCoin (String symbol){
 
-        ArrayList<Coin> coinArrayList = getCoins();
+        ArrayList<OldCoin> coinArrayList = getCoins();
 
-        Coin myCoin = coinArrayList.get(0);
+        OldCoin myCoin = coinArrayList.get(0);
 
         if(symbol.equals("BTC")){
             myCoin = coinArrayList.get(0);
@@ -149,9 +149,9 @@ public class Coin {
         return myCoin;
 
     }
-    public static LinkedList<Coin> CreateCoins (LinkedList<Coin> coins) {
+    public static LinkedList<OldCoin> CreateCoins (LinkedList<OldCoin> coins) {
 
-        ArrayList<Coin> myCoins = getCoins();
+        ArrayList<OldCoin> myCoins = getCoins();
 
         coins.addAll(myCoins);
 
