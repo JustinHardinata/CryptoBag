@@ -44,12 +44,8 @@ public class CoinListAdapter extends RecyclerView.Adapter<CoinListAdapter.CoinVi
 
         @Override
         public void onClick(View v) {
-
             int position = getAdapterPosition();
             mOnNoteListener.onNoteClick(position);
-
-
-
 
         }
 
@@ -85,8 +81,13 @@ public class CoinListAdapter extends RecyclerView.Adapter<CoinListAdapter.CoinVi
 
     @Override
     public int getItemCount() {
-        return mWordList.size();
+        int size = 0;
+        if (mWordList != null) {
+            size = mWordList.size();
+        }
+        return size;
     }
+
 
 
 }
