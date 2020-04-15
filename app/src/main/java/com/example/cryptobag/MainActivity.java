@@ -1,14 +1,18 @@
 package com.example.cryptobag;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.cryptobag.entities.Coin;
 import com.example.cryptobag.entities.CoinLoreResponse;
 import com.example.cryptobag.entities.CoinService;
 import com.google.gson.Gson;
+
+import java.io.IOException;
 import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -20,12 +24,10 @@ public class MainActivity extends AppCompatActivity implements CoinListAdapter.O
 
     String Symbol = null;
 
-    public static int EXTRA_MESSAGE;
+    public static final String MESSAGE = "ActivityMain";
     private RecyclerView mRecyclerView;
     private CoinListAdapter mCoinListAdapter;
     private static List<Coin> coinList;
-    private static final String TAG = "MainActivity";
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,20 +52,45 @@ public class MainActivity extends AppCompatActivity implements CoinListAdapter.O
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        call.enqueue(new Callback<CoinLoreResponse>() {
-            @Override
-            public void onResponse(Call<CoinLoreResponse> call, Response<CoinLoreResponse> response) {
-                CoinLoreResponse coinResponse = response.body();
-                List<Coin> myCoins = coinResponse.getData();
-                setCoins(myCoins);
-            }
+        new NetworkAssignment().execute();
 
-            @Override
-            public void onFailure(Call<CoinLoreResponse> call, Throwable t) {
-                String failMsg = "Could not connect to CoinLore API";
-            }
-        });
+    }
 
+    public class NetworkAssignment extends AsyncTask<Void, Integer, CoinLoreResponse> {
+
+
+        @Override
+        protected CoinLoreResponse doInBackground(Void... voids) {
+
+            Retrofit.Builder builder = new Retrofit.Builder()
+                    .baseUrl("https://api.coinlore.net/api/")
+                    .addConverterFactory(GsonConverterFactory.create());
+
+            Retrofit retrofit = builder.build();
+
+            CoinService service = retrofit.create(CoinService.class);
+            Call<CoinLoreResponse> call = service.get100Coins();
+
+            CoinLoreResponse coinList = null;
+
+            try {
+                Response<CoinLoreResponse> coinResponse = call.execute();
+                coinList = coinResponse.body();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return coinList;
+        }
+
+        @Override
+        protected void onPostExecute (CoinLoreResponse coinLoreResponse) {
+            super.onPostExecute(coinLoreResponse);
+            if(coinLoreResponse != null) {
+                setCoins(coinLoreResponse.getData());
+            } else {
+
+            }
+        }
     }
 
 
@@ -77,11 +104,28 @@ public class MainActivity extends AppCompatActivity implements CoinListAdapter.O
 
     public void launchActivity (int symbol) {
         Intent intent = new Intent (this, DetailActivity.class);
-        int message = symbol;
-        intent.putExtra(String.valueOf(EXTRA_MESSAGE), symbol);
+        intent.putExtra(MESSAGE, symbol);
         startActivity(intent);
 
     }
+    public void fragmentDetail(int position){
+
+        DetailFragment fragment = new DetailFragment();
+
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        if (fragment == null) {
+            transaction.add(R.id.detail_container, fragment);
+        } else {
+            transaction.replace(R.id.detail_container, fragment);
+        }
+        transaction.commit();
+
+        Bundle intentBundle = new Bundle();
+        intentBundle.putInt(MESSAGE, position);
+        fragment.setArguments(intentBundle);
+
+    }
+
 
     public static Coin coinSearch(int position){
         Coin targetCoin = coinList.get(position);
