@@ -52,11 +52,11 @@ public class MainActivity extends AppCompatActivity implements CoinListAdapter.O
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        new NetworkAssignment().execute();
+        new NetworkTask().execute();
 
     }
 
-    public class NetworkAssignment extends AsyncTask<Void, Integer, CoinLoreResponse> {
+    public class NetworkTask extends AsyncTask<Void, Integer, CoinLoreResponse> {
 
 
         @Override
