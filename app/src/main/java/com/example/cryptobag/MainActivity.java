@@ -38,16 +38,6 @@ public class MainActivity extends AppCompatActivity implements CoinListAdapter.O
 
         mCoinListAdapter = new CoinListAdapter(this, coinList, this);
 
-        Retrofit.Builder builder = new Retrofit.Builder()
-                .baseUrl("https://api.coinlore.net/api/")
-                .addConverterFactory(GsonConverterFactory.create());
-
-        Retrofit retrofit = builder.build();
-
-        CoinService service = retrofit.create(CoinService.class);
-
-        Call<CoinLoreResponse> call = service.get100Coins();
-
         mRecyclerView.setAdapter(mCoinListAdapter);
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
