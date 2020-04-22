@@ -7,7 +7,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.Room;
+
 import com.example.cryptobag.entities.Coin;
+import com.example.cryptobag.entities.CoinDatabase;
 import com.example.cryptobag.entities.CoinLoreResponse;
 import com.example.cryptobag.entities.CoinService;
 import com.google.gson.Gson;
@@ -28,6 +31,7 @@ public class MainActivity extends AppCompatActivity implements CoinListAdapter.O
     private RecyclerView mRecyclerView;
     private CoinListAdapter mCoinListAdapter;
     private static List<Coin> coinList;
+    public static CoinDatabase coinDb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +46,9 @@ public class MainActivity extends AppCompatActivity implements CoinListAdapter.O
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+        coinDb = Room.databaseBuilder(getApplicationContext(), CoinDatabase.class, "coinDb")
+                .build();
+
         new NetworkTask().execute();
 
     }
@@ -51,6 +58,7 @@ public class MainActivity extends AppCompatActivity implements CoinListAdapter.O
 
         @Override
         protected CoinLoreResponse doInBackground(Void... voids) {
+            coinDb.coinDao().deleteAllCoins();
 
             Retrofit.Builder builder = new Retrofit.Builder()
                     .baseUrl("https://api.coinlore.net/api/")
@@ -69,6 +77,10 @@ public class MainActivity extends AppCompatActivity implements CoinListAdapter.O
             } catch (IOException e) {
                 e.printStackTrace();
             }
+            Coin[] coinArray = coinList.getData().toArray(new Coin[coinList.getData().size()]);
+
+            coinDb.coinDao().insertCoins(coinArray);
+
             return coinList;
         }
 
@@ -82,19 +94,37 @@ public class MainActivity extends AppCompatActivity implements CoinListAdapter.O
             }
         }
     }
+    public class UpdateAdapterTask extends AsyncTask<Void, Void, List<Coin>>{
+        @Override
+        protected List<Coin> doInBackground(Void... voids) {
+            List<Coin> allCoins = coinDb.coinDao().getCoins();
+
+            coinList = allCoins;
+
+            return allCoins;
+        }
+
+        @Override
+        protected void onPostExecute(List<Coin> coins) {
+            super.onPostExecute(coins);
+            if (coins != null) {
+                setCoins(coins);
+            } else {
+            }
+        }
+    }
 
 
     @Override
     public void onNoteClick(int position) {
-
-        int symbol = position;
-        launchActivity(symbol);
+        String id = coinList.get(position).getId();
+        launchActivity(id);
 
     }
 
-    public void launchActivity (int symbol) {
+    public void launchActivity (String id) {
         Intent intent = new Intent (this, DetailActivity.class);
-        intent.putExtra(MESSAGE, symbol);
+        intent.putExtra(MESSAGE, id);
         startActivity(intent);
 
     }
