@@ -50,6 +50,7 @@ public class MainActivity extends AppCompatActivity implements CoinListAdapter.O
                 .build();
 
         new NetworkTask().execute();
+        new UpdateAdapterTask().execute();
 
     }
 
